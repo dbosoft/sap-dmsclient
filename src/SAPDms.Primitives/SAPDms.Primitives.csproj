@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <AssemblyName>Dbosoft.SAPDms.Primitives</AssemblyName>
+    <RootNamespace>Dbosoft.SAPDms</RootNamespace>
+    <PackageProjectUrl>https://github.com/dbosoft/sap-dmsclient</PackageProjectUrl>
+    <Copyright>Library created by dbosoft; SAP, Netweaver are trademarks of SAP SE</Copyright>
+    <Authors>dbosoft</Authors>
+    <Company>dbosoft GmbH</Company>
+    <RepositoryUrl>https://github.com/dbosoft/sap-dmsclient</RepositoryUrl>
+    <Description>A library for SAP document management</Description>
+  </PropertyGroup>
+
+</Project>

@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30413.136
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SAPDms.Core", "src\SAPDms.Core\SAPDms.Core.csproj", "{9EFB01DD-9641-4430-8692-B462E1FB7DA5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SAPDms.Primitives", "src\SAPDms.Primitives\SAPDms.Primitives.csproj", "{31AAC3E2-8082-4089-800A-9961B6E76D38}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9EFB01DD-9641-4430-8692-B462E1FB7DA5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9EFB01DD-9641-4430-8692-B462E1FB7DA5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9EFB01DD-9641-4430-8692-B462E1FB7DA5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9EFB01DD-9641-4430-8692-B462E1FB7DA5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{31AAC3E2-8082-4089-800A-9961B6E76D38}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{31AAC3E2-8082-4089-800A-9961B6E76D38}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{31AAC3E2-8082-4089-800A-9961B6E76D38}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{31AAC3E2-8082-4089-800A-9961B6E76D38}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {66224E82-67EE-4EAB-85BA-262DF4CB76D7}
+	EndGlobalSection
+EndGlobal
