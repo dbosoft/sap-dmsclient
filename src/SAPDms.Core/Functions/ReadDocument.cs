@@ -12,7 +12,10 @@ namespace Dbosoft.SAPDms.Functions
         {
             return context.CallFunction("BAPI_DOCUMENT_GETDETAIL2",
                 Input: func => func
-                    .BindDocumentId(documentId)
+                    .SetField("DOCUMENTTYPE", documentId.Type)
+                    .SetField("DOCUMENTNUMBER", documentId.Number)
+                    .SetField("DOCUMENTPART", documentId.Part)
+                    .SetField("DOCUMENTVERSION", documentId.Version)
                     .SetField("GETDOCDESCRIPTIONS", "X"),
                 Output: func => func
                     .HandleReturn()

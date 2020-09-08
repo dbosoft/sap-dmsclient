@@ -19,35 +19,26 @@ namespace Dbosoft.SAPDms.Apps
             configurationBuilder.AddCommandLine(args);
             var config = configurationBuilder.Build();
 
-            try
-            {
-                var rfcSettings = new Dictionary<string, string>();
-                config.GetSection("saprfc").Bind(rfcSettings);
-               
-                var documentId = ParseDocumentIdSettings(config);
+            var rfcSettings = new Dictionary<string, string>();
+            config.GetSection("saprfc").Bind(rfcSettings);
+           
+            var documentId = ParseDocumentIdSettings(config);
 
-                var runtime = new RfcRuntime();
-                var connectionFunc = fun( () =>Connection.Create(rfcSettings, runtime));
+            var runtime = new RfcRuntime();
+            using var context = new RfcContext(() => Connection.Create(rfcSettings, runtime));
 
-                using var context = new RfcContext(connectionFunc);
+            var documentResult = await context.DocumentGetDetail(documentId);
 
-                var documentResult = await context.DocumentGetDetail(documentId);
+            documentResult
+                .Match(r =>
+                    {
+                        Console.WriteLine($"Document : {r.Id.Type}/{r.Id.Number}/{r.Id.Part}/{r.Id.Version}, Status: {r.Status}, Description: {r.Description}");
+                    },
+                    l =>
+                    {
+                        Console.Error.WriteLine(l.Message);
+                    });
 
-                documentResult
-                    .Match(r =>
-                        {
-                            Console.WriteLine($"Document : {r.Id.Type}/{r.Id.Number}/{r.Id.Part}/{r.Id.Version}, Status: {r.Status}, Description: {r.Description}");
-                        },
-                        l =>
-                        {
-                            Console.Error.WriteLine(l.Message);
-                        });
-
-            }
-            catch (Exception ex)
-            {
-                Console.Error.WriteLine(ex);
-            }
         }
 
         private static DocumentId ParseDocumentIdSettings(IConfiguration config)
