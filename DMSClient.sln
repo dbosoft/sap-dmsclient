@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SAPDms.Core", "src\SAPDms.C
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SAPDms.Primitives", "src\SAPDms.Primitives\SAPDms.Primitives.csproj", "{31AAC3E2-8082-4089-800A-9961B6E76D38}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Apps.ExportDocument", "src\Apps.ExportDocument\Apps.ExportDocument.csproj", "{3A22AD20-ECB8-4089-AFFB-C04102E8F781}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{31AAC3E2-8082-4089-800A-9961B6E76D38}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{31AAC3E2-8082-4089-800A-9961B6E76D38}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{31AAC3E2-8082-4089-800A-9961B6E76D38}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3A22AD20-ECB8-4089-AFFB-C04102E8F781}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3A22AD20-ECB8-4089-AFFB-C04102E8F781}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3A22AD20-ECB8-4089-AFFB-C04102E8F781}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3A22AD20-ECB8-4089-AFFB-C04102E8F781}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

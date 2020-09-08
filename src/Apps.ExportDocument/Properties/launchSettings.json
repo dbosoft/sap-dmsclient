@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Apps.ExportDocument": {
+      "commandName": "Project",
+      "commandLineArgs": "/doc:type=ANY /doc:number=0000000000000010000001972"
+    }
+  }
+}

@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
@@ -11,5 +11,13 @@
     <RepositoryUrl>https://github.com/dbosoft/sap-dmsclient</RepositoryUrl>
     <Description>A library for SAP document management</Description>
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Dbosoft.Functional" Version="1.0.0" />
+    <PackageReference Include="GitVersionTask" Version="5.3.7">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
 
 </Project>
