@@ -24,12 +24,9 @@ namespace Dbosoft.SAPDms.Apps
            
             var documentId = ParseDocumentIdSettings(config);
 
-            var runtime = new RfcRuntime();
-            using var context = new RfcContext(() => Connection.Create(rfcSettings, runtime));
+            using var context = new RfcContext(new ConnectionBuilder(rfcSettings).Build());
 
-            var documentResult = await context.DocumentGetDetail(documentId);
-
-            documentResult
+            await context.DocumentGetDetail(documentId)
                 .Match(r =>
                     {
                         Console.WriteLine($"Document : {r.Id.Type}/{r.Id.Number}/{r.Id.Part}/{r.Id.Version}, Status: {r.Status}, Description: {r.Description}");
