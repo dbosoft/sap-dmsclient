@@ -261,3 +261,5 @@ __pycache__/
 *.pyc
 
 *.dll
+/src/Apps.ExportDocument/saphttp.exe
+/src/Apps.ExportDocument/sapftp.exe

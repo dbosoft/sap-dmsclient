@@ -37,6 +37,12 @@
     <None Update="libsapucum.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="sapftp.exe">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="saphttp.exe">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Update="sapnwrfc.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
