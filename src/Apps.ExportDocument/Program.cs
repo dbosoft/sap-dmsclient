@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Dbosoft.SAPDms.Functions;
 using Dbosoft.YaNco;
@@ -32,25 +33,36 @@ namespace Dbosoft.SAPDms.Apps
                 .WithStartProgramCallback(StartProgram)
                 .Build());
 
+            var sapftpDest = "";
+            var saphttpDest = "";
+
             await 
                 (from documentData in context.DocumentGetDetail(documentId)
-                from sapftpDest in context.StartRegServer("sapftp")
-                from saphttpDest in context.StartRegServer("saphttp")
-                select(documentData,sapftpDest, saphttpDest))
+                from sapftpDestLocal in context.StartRegServer("sapftp")
+                from saphttpDestLocal in context.StartRegServer("saphttp")
+                select(documentData,sapftpDestLocal, saphttpDestLocal))
                 .Match(r =>
                     {
                         var d = r.documentData;
+                        sapftpDest = r.sapftpDestLocal;
+                        saphttpDest = r.saphttpDestLocal;
                         Console.WriteLine($"Document : {d.Id.Type}/{d.Id.Number}/{d.Id.Part}/{d.Id.Version}, Status: {d.Status}, Description: {d.Description}");
                         d.Files.Iter(async f =>
                         {
                             Console.WriteLine($"  File : {f.FileName}/{f.OriginalType}/{f.ApplicationId}");
-                            await CheckoutFile(context, f, r.sapftpDest, r.saphttpDest);
+                            await CheckoutFile(context, f, sapftpDest, saphttpDest);
                         });
                     },
                     l =>
                     {
                         Console.Error.WriteLine(l.Message);
                     });
+
+            if(!string.IsNullOrWhiteSpace(sapftpDest))
+                await context.StopRegServer(sapftpDest).IfLeft(l => Console.Error.WriteLine(l.Message));
+
+            if (!string.IsNullOrWhiteSpace(saphttpDest))
+                await context.StopRegServer(saphttpDest).IfLeft(l => Console.Error.WriteLine(l.Message));
 
         }
 

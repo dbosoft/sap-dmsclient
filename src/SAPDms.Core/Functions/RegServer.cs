@@ -21,5 +21,14 @@ namespace Dbosoft.SAPDms.Functions
                     f => f.GetField<string>("DESTINATION"));
         }
 
+        public static EitherAsync<RfcErrorInfo, Unit> StopRegServer(
+            this IRfcContext context, string rfcDestination)
+        {
+            return context.CallFunctionOneWay("EASYDMS_STOP_REGSERVER",
+                f => f
+                    .SetField("DESTINATION", rfcDestination));
+        }
+
+
     }
 }
