@@ -2,7 +2,7 @@
   "profiles": {
     "Apps.ExportDocument": {
       "commandName": "Project",
-      "commandLineArgs": "/doc:type=ANY /doc:number=0000000000000010000001972"
+      "commandLineArgs": "/doc:type=AW /doc:number=AW000083 /doc:version=01"
     }
   }
 }

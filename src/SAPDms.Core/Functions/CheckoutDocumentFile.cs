@@ -7,7 +7,7 @@ namespace Dbosoft.SAPDms.Functions
     public static partial class DmsRfcFunctionExtensions
     {
         public static EitherAsync<RfcErrorInfo, Unit> DocumentCheckoutFile(
-            this IRfcContext context, DocumentFileInfo fileInfo, string checkoutPath)
+            this IRfcContext context, DocumentFileInfo fileInfo, string checkoutPath, string sapftpDest, string saphttpDest)
         {
             return context.CallFunction("BAPI_DOCUMENT_CHECKOUTVIEW2",
                 Input: func => func
@@ -16,6 +16,8 @@ namespace Dbosoft.SAPDms.Functions
                     .SetField("DOCUMENTPART", fileInfo.DocumentId.Part)
                     .SetField("DOCUMENTVERSION", fileInfo.DocumentId.Version)
                     .SetField("ORIGINALPATH", checkoutPath)
+                    .SetField("PF_HTTP_DEST", saphttpDest ?? "")
+                    .SetField("PF_FTP_DEST", sapftpDest ?? "")
                     .SetStructure("DOCUMENTFILE", s => s
                         .SetField("ORIGINALTYPE", fileInfo.OriginalType)
                         .SetField("APPLICATION_ID", fileInfo.ApplicationId)

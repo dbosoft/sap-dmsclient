@@ -32,14 +32,19 @@ namespace Dbosoft.SAPDms.Apps
                 .WithStartProgramCallback(StartProgram)
                 .Build());
 
-            await context.DocumentGetDetail(documentId)
+            await 
+                (from documentData in context.DocumentGetDetail(documentId)
+                from sapftpDest in context.StartRegServer("sapftp")
+                from saphttpDest in context.StartRegServer("saphttp")
+                select(documentData,sapftpDest, saphttpDest))
                 .Match(r =>
                     {
-                        Console.WriteLine($"Document : {r.Id.Type}/{r.Id.Number}/{r.Id.Part}/{r.Id.Version}, Status: {r.Status}, Description: {r.Description}");
-                        r.Files.Iter(async f =>
+                        var d = r.documentData;
+                        Console.WriteLine($"Document : {d.Id.Type}/{d.Id.Number}/{d.Id.Part}/{d.Id.Version}, Status: {d.Status}, Description: {d.Description}");
+                        d.Files.Iter(async f =>
                         {
                             Console.WriteLine($"  File : {f.FileName}/{f.OriginalType}/{f.ApplicationId}");
-                            await CheckoutFile(context,f);
+                            await CheckoutFile(context, f, r.sapftpDest, r.saphttpDest);
                         });
                     },
                     l =>
@@ -60,10 +65,10 @@ namespace Dbosoft.SAPDms.Apps
             return new DocumentId(documentType, documentNumber, documentPart, documentVersion);
         }
 
-        private static async Task CheckoutFile(IRfcContext context, DocumentFileInfo fileInfo)
+        private static async Task CheckoutFile(IRfcContext context, DocumentFileInfo fileInfo, string sapftpDest, string saphttpDest)
         {
             var checkoutDir = AppDomain.CurrentDomain.BaseDirectory;
-            await context.DocumentCheckoutFile(fileInfo, checkoutDir)
+            await context.DocumentCheckoutFile(fileInfo, checkoutDir, sapftpDest, saphttpDest)
                 .Match(
                     r => Console.WriteLine(
                         $"    checked out to '{Path.Combine(checkoutDir, fileInfo.FileName)}'"),
